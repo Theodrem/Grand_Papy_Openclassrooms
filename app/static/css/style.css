@@ -1,0 +1,68 @@
+    h1 {
+        font-size: 3em;
+    }
+
+
+    h2 {
+        font-size: 2em;
+    }
+
+    #title {
+        display: flex;
+        justify-content: center;
+    }
+
+    #papy {
+        height: 200px;
+        width: 200px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+        justify-content: space-around;
+    }
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+   #map {
+      height: 600px;
+      width: 800px;
+      display: none;
+      margin-left: auto;
+      margin-right: auto;
+     }
+
+   #map.display {
+     display: block;
+   }
+
+   footer {
+      bottom: 0;
+      width: 100%;
+      position: absolute;
+
+  }
+
+
+    @media screen and (max-width: 800px)
+    {
+        footer
+        {
+            position: static;
+        }
+
+        #map
+         {
+          height: 400px;
+          width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          }
+}
+
+
+
+
+
