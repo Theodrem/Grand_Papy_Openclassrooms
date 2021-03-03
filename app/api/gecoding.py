@@ -1,3 +1,4 @@
+from boto.s3.connection import S3Connection
 import requests
 import os
 
@@ -12,7 +13,7 @@ class Geocoding:
 
     def __init__(self, place):
         try:
-            self.key = os.environ['GOOGLEKEY']
+            self.key = S3Connection(os.environ['GOOGLE_KEY'])
         except KeyError:
             self.key = ""
 
