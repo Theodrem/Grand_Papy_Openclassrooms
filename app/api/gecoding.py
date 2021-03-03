@@ -13,7 +13,7 @@ class Geocoding:
 
     def __init__(self, place):
         try:
-            self.key = S3Connection(os.environ['GOOGLEKEY'])
+            self.key = os.environ.get('GOOGLEKEY')
         except KeyError:
             self.key = ""
 
