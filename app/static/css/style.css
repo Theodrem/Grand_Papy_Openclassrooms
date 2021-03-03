@@ -29,8 +29,8 @@
     }
 
     #loader {
-        height: 100px;
-        width: 100px;
+        height: 90px;
+        width: 90px;
     }
 
 /* Center the form section */
@@ -38,7 +38,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 90px;
+        margin-top: 80px;
         justify-content: space-around;
     }
 
