@@ -62,21 +62,21 @@ STOP_WORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleurs",
             "vôtre", "vôtres", "w", "x", "y", "z", "zut", "à", "â", "ça", "ès", "étaient", "étais", "était", "étant",
             "été", "être", "ô" "papy", "papi", "salut", "hey", "adresse", "l'adresse", "dis"]
 
-ANSWER_LIST = [
-    "Et voici mon poulet : ",
-    "Je m'en rappelle ! C'était il y a 30 ans, j'étais jeune, j'avais 84 ans : ",
-    "J'ai toujours aimé cet endroit ! ",
-    "Tu ne verras jamais cet endroit comme moi j'ai pu le voir ! ",
-    "C'est là que j'ai rencontré ma femme, que j'ai piqué à Jules Verne ! La bonne histoire : ",
+MESSAGE_LIST = [
+    "Et voici mon petit loup: ",
+    "Je m'en rappelle plus. Ah si! C'était un vrai périple.",
+    "Cet endroit est magnifique! ",
+    "Quelle aventure! Je te raconte mon petit:",
+    "Accroche toi, ça va être long!",
     "Oui oui, je me souviens du lieu dont tu me parles. ",
 ]
 
 END_LIST = [
     "Veux tu que je te raconte une autre histoire ? ",
-    "Allez, pose moi une colle ! ",
     "Un jour tu en sauras autant que moi, pour l'instant pose moi une autre question ! ",
-    "Allez, réveilles-toi ! Pose moi une autre question. ",
-    "C'est toute l'histoire de ma vie.",
+    "T'aimes mes histoires?",
+    "Pose moi une autre question."
+
 ]
 
 ERROR_DICT = {

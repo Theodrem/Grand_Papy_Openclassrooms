@@ -2,9 +2,20 @@
         font-size: 3em;
     }
 
-
     h2 {
         font-size: 2em;
+    }
+
+    li {
+        font-size: 1em;
+    }
+
+    h6 {
+        font-size: 1.3em;
+    }
+
+    p {
+        font-size: 1em;
     }
 
     #title {
@@ -17,6 +28,12 @@
         width: 200px;
     }
 
+    #loader {
+        height: 100px;
+        width: 100px;
+    }
+
+/* Center the form section */
     form {
         display: flex;
         flex-direction: column;
@@ -24,6 +41,7 @@
         margin-top: 80px;
         justify-content: space-around;
     }
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
    #map {
@@ -46,6 +64,7 @@
   }
 
 
+/* Responsive design. */
     @media screen and (max-width: 800px)
     {
         footer
@@ -61,6 +80,7 @@
           margin-right: auto;
           }
 }
+
 
 
 

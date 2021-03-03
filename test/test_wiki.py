@@ -2,7 +2,13 @@ import unittest
 
 
 class TestWiki(unittest.TestCase):
+    """
+    Class test for the Wikipedia class.
+    """
     def setUp(self):
+        """
+        Unittest setup
+        """
         self.lat = 35.6761919
         self.lng = 139.6503106
 
@@ -34,13 +40,23 @@ class TestWiki(unittest.TestCase):
 
                                              }}}
 
-    def get_pageid(self):
+    def get_page(self):
+        """
+        :return: Data to false request.
+        """
         return self.result_page['query']['geosearch'][0]['pageid']
 
     def test_get_page(self):
+        """
+        Check if the pageid is correct.
+        """
         get_page = self.result_page['query']['geosearch'][0]['pageid']
         self.assertEqual(get_page, 63573)
 
     def test_get_description(self):
-        get_description = self.result_description["query"]["pages"][str(self.get_pageid())]["extract"]
+        """
+        Check part of the description to see if it is correct.
+        """
+        get_description = self.result_description["query"]["pages"][str(self.get_page())]["extract"]
         self.assertIn("(« le Jeune Pic » en  quechua)", get_description)
+
