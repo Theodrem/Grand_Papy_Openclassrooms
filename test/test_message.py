@@ -8,6 +8,7 @@ class TestMessage(unittest.TestCase):
     """
     Class test for the functions messages.
     """
+
     def setUp(self):
         """
         Unittest setup

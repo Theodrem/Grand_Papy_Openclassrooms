@@ -5,6 +5,7 @@ class TestGeocoding(unittest.TestCase):
     """
     Class test for the Geocoding class.
     """
+
     def setUp(self):
         """
         Unittest setup
@@ -13,15 +14,15 @@ class TestGeocoding(unittest.TestCase):
         self.place_2 = "tour pise"
 
         self.current = {'results': [{'formatted_address':
-                            'Tokyo, Japan',
-                        'location': {'lat': 35.6761919, 'lng': 139.6503106}
-                        }]}
+                                     'Tokyo, Japan',
+                                     'location': {'lat': 35.6761919, 'lng': 139.6503106}
+                                     }]}
 
-        self.current_2 = {'results':[{'formatted_address':
-                              'Piazza del Duomo, 56126 Pisa PI, Italy',
-                          'geometry':
-                              {'location': {'lat': 43.722952, 'lng': 10.396597}
-                               }}]}
+        self.current_2 = {'results': [{'formatted_address':
+                                       'Piazza del Duomo, 56126 Pisa PI, Italy',
+                                       'geometry':
+                                       {'location': {'lat': 43.722952, 'lng': 10.396597}
+                                        }}]}
 
     def test_send_request(self):
         """

@@ -25,7 +25,8 @@ class Wiki:
             """
             Try send request. If there is an error in connexion return error message.
             """
-            response = requests.get("https://fr.wikipedia.org/w/api.php", params=parameters)
+            response = requests.get(
+                "https://fr.wikipedia.org/w/api.php", params=parameters)
             data = response.json()
         except requests.exceptions.ConnectionError:
             return get_errors_response(self.wiki_mess)
@@ -58,7 +59,8 @@ class Wiki:
             """
             Try send request. If there is an error in connexion return error message.
             """
-            response = requests.get("https://fr.wikipedia.org/w/api.php", params=parameters)
+            response = requests.get(
+                "https://fr.wikipedia.org/w/api.php", params=parameters)
             data = response.json()
         except requests.exceptions.ConnectionError:
             return get_errors_response("no_found_wiki")
@@ -67,9 +69,8 @@ class Wiki:
             """
             Try get extract data. If there is a key error return error message.
             """
-            description_wiki = data["query"]["pages"][str(self.page)]["extract"]
+            description_wiki = data["query"]["pages"][str(
+                self.page)]["extract"]
             return description_wiki
         except KeyError:
             return get_errors_response("no_found_wiki")
-
-

@@ -48,7 +48,8 @@ def process():
             end_message = get_end_message()
 
         except IndexError:
-            mess_wiki = get_errors_response("no_found_wiki")  # Error message wiki
+            mess_wiki = get_errors_response(
+                "no_found_wiki")  # Error message wiki
 
     except IndexError:
         """
@@ -58,7 +59,8 @@ def process():
         lng = None
         lat = None
         mess_wiki = None
-        message = get_errors_response("no_found_mess")  # Error message geocoding
+        message = get_errors_response(
+            "no_found_mess")  # Error message geocoding
         end_message = None
 
     return jsonify({'input_user': parsed_input, 'lat': lat, 'lng': lng,  # Return all data with json format

@@ -9,6 +9,7 @@ class Geocoding:
     This class queries the geocoding API.
     Get latitude, longitude and address for Google maps api.
     """
+
     def __init__(self, place):
         try:
             self.key = os.environ['GOOGLEKEY']
@@ -79,6 +80,3 @@ class Geocoding:
             return self.current['results'][0]['formatted_address']
         except TypeError:
             return get_errors_response("no_found_geocoding")
-
-
-

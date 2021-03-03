@@ -7,6 +7,7 @@ class TestParser(unittest.TestCase):
     """
     This class test the Parser class.
     """
+
     def setUp(self):
         """
         Unittest setup
