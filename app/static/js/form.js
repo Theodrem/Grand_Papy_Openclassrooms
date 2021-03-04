@@ -23,7 +23,10 @@ document.getElementById("connexion").addEventListener('submit', function(e) {
 
         xhr.onreadystatechange = function(event) {
         /* Launch the ajax request*/
-            result.innerHTML = "<img src='static/image/loader.gif' id='loader'>" //Display gif launcher
+            result.innerHTML = "<img src='static/image/loader.gif' id='loader'>";//Display gif launcher
+            address.innerHTML = null;
+            end_message.innerHTML = null;
+            message.innerHTML = null;
             if (this.readyState == 4 && this.status == 200) {
             /*If request is ok*/
                 console.log(this.response);
@@ -32,11 +35,10 @@ document.getElementById("connexion").addEventListener('submit', function(e) {
 
                 maps.classList.add('display');
                 footer.style.position = "initial"; //Change position of the footer
-                footer.style.marginTop = "30px"
+                footer.style.marginTop = "30px";
                 result.innerHTML = this.response['wiki']; //Display wiki message
                 address.innerHTML = this.response['address']; //Display address
                 end_message.innerHTML = this.response['end_mess']; // Display end message
-
                 message.innerHTML = this.response['message']; // Display message
 
                 if (lt == null) {
