@@ -32,6 +32,7 @@ document.getElementById("connexion").addEventListener('submit', function(e) {
 
                 maps.classList.add('display');
                 footer.style.position = "initial"; //Change position of the footer
+                footer.style.marginTop = "30px"
                 result.innerHTML = this.response['wiki']; //Display wiki message
                 address.innerHTML = this.response['address']; //Display address
                 end_message.innerHTML = this.response['end_mess']; // Display end message

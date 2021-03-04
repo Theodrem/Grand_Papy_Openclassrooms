@@ -67,13 +67,8 @@
 
 
 /* Responsive design. */
-    @media all and (max-width: 890px)
+    @media screen and (max-width: 900px)
     {
-        footer
-        {
-            position: static;
-        }
-
         #map
          {
           height: 400px;
@@ -81,7 +76,52 @@
           margin-left: auto;
           margin-right: auto;
           }
-}
+
+        h6
+        {
+            font-size: 1.1em;
+        }
+
+
+/* Mobile design. */
+    @media screen and (max-width: 750px)
+    {
+        h1
+        {
+            font-size: 2em;
+        }
+
+        h2
+        {
+            font-size: 1.4em;
+        }
+
+        #papy
+        {
+            height: 100px;
+            width: 100px;
+        }
+
+        #loader
+        {
+            height: 50px;
+            width: 50px;
+        }
+
+        footer
+        {
+            position: static;
+        }
+
+        #map
+       {
+           height: 300px;
+           width: 300px;
+
+       }
+    }
+
+
 
 
 
