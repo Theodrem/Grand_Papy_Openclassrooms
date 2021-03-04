@@ -67,7 +67,7 @@
 
 
 /* Responsive design. */
-    @media screen and (max-width: 890px)
+    @media all and (max-width: 890px)
     {
         footer
         {
