@@ -50,6 +50,8 @@
       display: none;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: 20px;
+
      }
 
    #map.display {
@@ -65,7 +67,7 @@
 
 
 /* Responsive design. */
-    @media screen and (max-width: 800px)
+    @media screen and (max-width: 1000px)
     {
         footer
         {
@@ -78,7 +80,6 @@
           width: 400px;
           margin-left: auto;
           margin-right: auto;
-          margin-bottom: 20px;
           }
 }
 
