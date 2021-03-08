@@ -3,7 +3,6 @@ import unittest
 from app.message import get_message, get_end_message, get_errors_response
 from app.config import MESSAGE_LIST, END_LIST, ERROR_DICT
 
-
 class TestMessage(unittest.TestCase):
     """
     Class test for the functions messages.
@@ -22,8 +21,7 @@ class TestMessage(unittest.TestCase):
         Check if the message is in the message list
         """
         messages = MESSAGE_LIST
-        if self.message in messages:
-            self.assertIsNotNone(self.message)
+        self.assertIn(self.message, messages)
 
     def test_get_end_message(self):
         """

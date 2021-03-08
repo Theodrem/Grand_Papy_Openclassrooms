@@ -7,15 +7,12 @@ __pycache__/
 # Distribution / packaging
 .Python
 var/
-.idea/
 
 # pyenv
 .python-version
 
 # Environments
-.venv
-venv/
-venv.bak/
-.mypy_cache/
-/venv/
 
+
+/venv/
+.idea

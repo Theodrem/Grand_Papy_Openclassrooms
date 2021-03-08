@@ -76,4 +76,4 @@ def resource_not_found(e):
 @app.errorhandler(500)
 def error_networks(e):
     return render_template("500.html")
-# https://validator.w3.org/
+

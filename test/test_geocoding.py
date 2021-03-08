@@ -1,67 +1,53 @@
 import unittest
+from unittest.mock import Mock
+
+from app.api.gecoding import Geocoding
+from app.message import get_errors_response
 
 
 class TestGeocoding(unittest.TestCase):
-    """
-    Class test for the Geocoding class.
-    """
-
     def setUp(self):
-        """
-        Unittest setup
-        """
-        self.place = "tokyo"
-        self.place_2 = "tour pise"
-
-        self.current = {'results': [{'formatted_address':
-                                     'Tokyo, Japan',
-                                     'location': {'lat': 35.6761919, 'lng': 139.6503106}
-                                     }]}
-
-        self.current_2 = {'results': [{'formatted_address':
-                                       'Piazza del Duomo, 56126 Pisa PI, Italy',
-                                       'geometry':
-                                       {'location': {'lat': 43.722952, 'lng': 10.396597}
-                                        }}]}
+        self.geo = Geocoding("paris")
+        self.get_errors_response = get_errors_response
+        self.geo.send_request = Mock()
+        self.response = {'results':
+            [{'address_components': [
+                {'long_name': 'Paris', 'short_name': 'Paris', 'types': ['locality', 'political']},
+                {'long_name': 'Paris', 'short_name': 'Paris',
+                 'types': ['administrative_area_level_2', 'political']},
+                {'long_name': 'Île-de-France', 'short_name': 'IDF',
+                 'types': ['administrative_area_level_1', 'political']},
+                {'long_name': 'France', 'short_name': 'FR', 'types': ['country', 'political']}],
+                'formatted_address': 'Paris, France', 'geometry': {
+                    'bounds': {'northeast': {'lat': 48.9021449, 'lng': 2.4699208},
+                               'southwest': {'lat': 48.815573, 'lng': 2.224199}},
+                    'location': {'lat': 48.856614, 'lng': 2.3522219},
+                    'location_type': 'APPROXIMATE',
+                    'viewport': {'northeast': {'lat': 48.9021449, 'lng': 2.4699208},
+                                 'southwest': {'lat': 48.815573, 'lng': 2.224199}}},
+                'place_id': 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ', 'types': ['locality', 'political']}],
+            'status': 'OK'}
 
     def test_send_request(self):
-        """
-        :return: Data to false request number one.
-        """
-        if self.current is list:
-            return self.current
-
-    def test_send_request_2(self):
-        """
-        :return:  Data to false request number two.
-        """
-        if self.current_2 is list:
-            return self.current_2
+        self.assertEqual(self.geo.current, self.response)
 
     def test_get_latitude(self):
-        """
-        Check if the latitude number one is correct
-        """
-        get_lat = self.current['results'][0]['location']['lat']
-        self.assertEqual(get_lat, 35.6761919)
+        try:
+            self.assertEqual(self.geo.current['results'][0]['location']['lat'], 48.856614)
+        except KeyError:
+            self.assertEqual(self.geo.current['results'][0]['geometry']['location']['lat'], 48.856614)
 
     def test_get_longitude(self):
-        """
-        Check if the longitude number one is correct
-        """
-        get_lng = self.current['results'][0]['location']['lng']
-        self.assertEqual(get_lng, 139.6503106)
+        try:
+            self.assertEqual(self.geo.current['results'][0]['location']['lng'], 2.3522219)
+        except KeyError:
+            self.assertEqual(self.geo.current['results'][0]['geometry']['location']['lng'], 2.3522219)
 
-    def test_get_latitude_2(self):
-        """
-        Check if the latitude number two is correct
-        """
-        get_lat = self.current_2['results'][0]['geometry']['location']['lat']
-        self.assertEqual(get_lat, 43.722952)
+    def test_get_address(self):
+        try:
+            self.assertEqual(self.geo.current['results'][0]['formatted_address'], 'Paris, France')
+        except TypeError:
+            self.assertEqual(self.get_errors_response("no_found_geocoding"), get_errors_response("no_found_geocoding"))
 
-    def test_get_longitude_2(self):
-        """
-        Check if the longitude number two is correct
-        """
-        get_lng = self.current_2['results'][0]['geometry']['location']['lng']
-        self.assertEqual(get_lng, 10.396597)
+
+unittest.main()

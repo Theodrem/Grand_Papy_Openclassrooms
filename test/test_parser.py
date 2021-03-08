@@ -21,14 +21,8 @@ class TestParser(unittest.TestCase):
         Parse the input
         Check if there are bad words in the parsed entry.
         """
-        list_verify = []
         parsing = self.parse.transform_input()
-
-        for word in self.list_stop_words:
-            if word in parsing.split(' '):
-                list_verify.append(word)
-
-        self.assertEqual(list_verify, [])
+        self.assertEqual(len([word for word in parsing.split(" ") if word not in self.list_stop_words]), 0)
 
     def test_transform_two(self):
         """
