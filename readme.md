@@ -20,3 +20,7 @@ For exemple: ("Dis moi l'adresse de la tour eiffel")
 The grandfather will answer you the address, the map and a story.
 
 
+## Local installation:
+
+Install libraries cmd: "pip install riquirements.txt"
+Activate Interpreter cmd: "venv\Scripts\activate.bat activate"
