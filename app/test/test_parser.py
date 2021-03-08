@@ -1,4 +1,5 @@
 import unittest
+
 from app.config import STOP_WORDS
 from app.parser import Parser
 

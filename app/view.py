@@ -2,7 +2,7 @@ from flask import render_template, request, jsonify
 
 from app import app
 from app.parser import Parser
-from app.api.gecoding import Geocoding
+from app.api.geocoding import Geocoding
 from app.api.wiki import Wiki
 from app.message import get_message, get_end_message, get_errors_response
 

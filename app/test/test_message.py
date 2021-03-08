@@ -3,6 +3,7 @@ import unittest
 from app.message import get_message, get_end_message, get_errors_response
 from app.config import MESSAGE_LIST, END_LIST, ERROR_DICT
 
+
 class TestMessage(unittest.TestCase):
     """
     Class test for the functions messages.

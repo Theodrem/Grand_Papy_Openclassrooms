@@ -1,9 +1,7 @@
 import unittest
 
 
-from app.parser import Parser
-from app.message import get_message, get_end_message, get_errors_response
-from app.config import END_LIST, MESSAGE_LIST, ERROR_DICT
+from app import app
 
 
 class TestView(unittest.TestCase):

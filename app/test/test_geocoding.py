@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
-from app.api.gecoding import Geocoding
+from app.api.geocoding import Geocoding
 from app.message import get_errors_response
 
 
@@ -50,4 +50,3 @@ class TestGeocoding(unittest.TestCase):
             self.assertEqual(self.get_errors_response("no_found_geocoding"), get_errors_response("no_found_geocoding"))
 
 
-unittest.main()
