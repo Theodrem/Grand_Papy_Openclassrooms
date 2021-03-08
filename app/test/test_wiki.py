@@ -14,7 +14,7 @@ class TestWiki(unittest.TestCase):
         Unittest setup
         """
         self.wiki = Wiki(37.4835791, -122.1500939)
-        self.wiki.get_page = Mock()
+        self.wiki.get_page = Mock(return_value=10142861)
         self.wiki.get_description = Mock()
         self.result_page = {'batchcomplete': '',
                             'query': {'geosearch': [{'pageid': 10142861,
@@ -41,5 +41,5 @@ class TestWiki(unittest.TestCase):
         """
         :return: Data to false request.
         """
-        self.wiki.get_page.return_value = self.result_page["query"]["geosearch"][0]['pageid']
-        self.assertEqual(self.wiki.get_page(), 10142861)
+        self.wiki.get_page.return_value = 10142861
+        self.assertEqual(self.wiki.get_page, 10142861)
