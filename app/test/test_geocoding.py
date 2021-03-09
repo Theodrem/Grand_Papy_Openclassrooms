@@ -29,9 +29,9 @@ class TestGeocoding(unittest.TestCase):
         self.expected_lng = self.expected['results'][0]['geometry']['location']['lat']
         self.expected_address = self.expected['results'][0]['formatted_address']
 
-    @patch.object(Geocoding, 'send_request')
-    def test_send_request(self, mock_send_request):
-        mock_send_request.return_value = self.expected
+    @patch.object(Geocoding, "send_request")
+    def test_send_request(self, mock_current):
+        mock_current.return_value = self.expected
         result = self.geo.send_request()
         self.assertEqual(self.expected, result)
 
@@ -42,16 +42,18 @@ class TestGeocoding(unittest.TestCase):
         self.assertEqual(self.expected_lat, result)
 
     @patch.object(Geocoding, 'get_longitude')
-    def test_get_latitude(self, mock_get_longitude):
+    def test_get_longitude(self, mock_get_longitude):
         mock_get_longitude.return_value = self.expected_lng
         result = self.geo.get_longitude()
         self.assertEqual(self.expected_lng, result)
 
-    @patch.object(Geocoding, 'get_address')
-    def test_get_latitude(self, mock_get_address):
+    @patch.object(Geocoding, "get_address")
+    def test_get_address(self, mock_get_address):
         mock_get_address.return_value = self.expected_address
         result = self.geo.get_address()
         self.assertEqual(self.expected_address, result)
+
+
 
 
 
