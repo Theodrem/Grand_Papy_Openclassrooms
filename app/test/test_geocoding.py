@@ -1,14 +1,13 @@
-import unittest
-from unittest.mock import patch
-
+import pytest
+import urllib.request
 from app.api.geocoding import Geocoding
 
 
-class TestGeocoding(unittest.TestCase):
-    def setUp(self):
-        self.expected_geo_name = "paris"
-        self.geo = Geocoding(self.expected_geo_name)
-        self.expected = {'results':
+class TestGeocoding:
+
+    def test_request(self, monkeypatch):
+        geo = Geocoding("paris")
+        data = {'results':
             [{'address_components': [
                 {'long_name': 'Paris', 'short_name': 'Paris', 'types': ['locality', 'political']},
                 {'long_name': 'Paris', 'short_name': 'Paris',
@@ -25,38 +24,16 @@ class TestGeocoding(unittest.TestCase):
                                  'southwest': {'lat': 48.815573, 'lng': 2.224199}}},
                 'place_id': 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ', 'types': ['locality', 'political']}],
             'status': 'OK'}
-        self.expected_lat = self.expected['results'][0]['geometry']['location']['lat']
-        self.expected_lng = self.expected['results'][0]['geometry']['location']['lat']
-        self.expected_address = self.expected['results'][0]['formatted_address']
 
-    @patch.object(Geocoding, "send_request")
-    def test_send_request(self, mock_current):
-        mock_current.return_value = self.expected
-        result = self.geo.send_request()
-        self.assertEqual(self.expected, result)
+        data_lat = data['results'][0]['geometry']['location']['lat']
+        data_lng = data['results'][0]['geometry']['location']['lng']
+        data_address = data['results'][0]['formatted_address']
 
-    @patch.object(Geocoding, 'get_latitude')
-    def test_get_latitude(self, mock_get_latitude):
-        mock_get_latitude.return_value = self.expected_lat
-        result = self.geo.get_latitude()
-        self.assertEqual(self.expected_lat, result)
+        def mockreturn():
+            return data
 
-    @patch.object(Geocoding, 'get_longitude')
-    def test_get_longitude(self, mock_get_longitude):
-        mock_get_longitude.return_value = self.expected_lng
-        result = self.geo.get_longitude()
-        self.assertEqual(self.expected_lng, result)
-
-    @patch.object(Geocoding, "get_address")
-    def test_get_address(self, mock_get_address):
-        mock_get_address.return_value = self.expected_address
-        result = self.geo.get_address()
-        self.assertEqual(self.expected_address, result)
-
-
-
-
-
-
-
-
+        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+        assert geo.send_request() == data
+        assert geo.get_latitude() == data_lat
+        assert geo.get_longitude() == data_lng
+        assert geo.get_address() == data_address

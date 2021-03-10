@@ -60,7 +60,7 @@ STOP_WORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleurs",
               "unique", "uniques", "uns", "v", "va", "vais", "vas", "vers", "via", "vif", "vifs", "vingt", "vivat",
               "vive", "vives", "vlan", "voici", "voilà", "vont", "vos", "votre", "vous", "vous-mêmes", "vu", "vé",
               "vôtre", "vôtres", "w", "x", "y", "z", "zut", "à", "â", "ça", "ès", "étaient", "étais", "était", "étant",
-              "été", "être", "ô" "papy", "papi", "salut", "hey", "adresse", "l'adresse", "dis", "donne"]
+              "été", "être", "ô", "papy", "papi", "salut", "hey", "adresse", "l'adresse", "dis", "donne"]
 
 MESSAGE_LIST = [
     "Et voici mon petit loup: ",
