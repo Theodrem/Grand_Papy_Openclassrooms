@@ -1,13 +1,17 @@
-import pytest
-import urllib.request
+import unittest
+from unittest.mock import MagicMock
 from app.api.geocoding import Geocoding
+import unittest.mock
+import json
 
 
-class TestGeocoding:
+class TestGeocoding(unittest.TestCase):
 
-    def test_request(self, monkeypatch):
-        geo = Geocoding("paris")
-        data = {'results':
+    @unittest.mock.patch("app.api.geocoding.requests")
+    def test_request(self, mock_current):
+        ville = "paris"
+        geo = Geocoding(ville)
+        expected = {'results':
             [{'address_components': [
                 {'long_name': 'Paris', 'short_name': 'Paris', 'types': ['locality', 'political']},
                 {'long_name': 'Paris', 'short_name': 'Paris',
@@ -25,15 +29,10 @@ class TestGeocoding:
                 'place_id': 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ', 'types': ['locality', 'political']}],
             'status': 'OK'}
 
-        data_lat = data['results'][0]['geometry']['location']['lat']
-        data_lng = data['results'][0]['geometry']['location']['lng']
-        data_address = data['results'][0]['formatted_address']
+        mock_current = MagicMock()
+        mock_current.return_value = expected
 
-        def mockreturn():
-            return data
+        result = geo.send_request()
 
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
-        assert geo.send_request() == data
-        assert geo.get_latitude() == data_lat
-        assert geo.get_longitude() == data_lng
-        assert geo.get_address() == data_address
+        self.assertEqual(result, expected)
+
