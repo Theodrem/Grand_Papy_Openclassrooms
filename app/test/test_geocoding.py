@@ -1,13 +1,13 @@
-import unittest
-from unittest.mock import MagicMock
+
+from mock import MagicMock
+
+import mock
+
 from app.api.geocoding import Geocoding
-import unittest.mock
-import json
 
+class TestGeocoding():
 
-class TestGeocoding(unittest.TestCase):
-
-    @unittest.mock.patch("app.api.geocoding.requests")
+    @mock.patch("app.api.geocoding.requests")
     def test_request(self, mock_current):
         ville = "paris"
         geo = Geocoding(ville)
@@ -34,5 +34,5 @@ class TestGeocoding(unittest.TestCase):
 
         result = geo.send_request()
 
-        self.assertEqual(result, expected)
+        assert result == expected
 
