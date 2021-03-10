@@ -8,7 +8,7 @@ from app.api.geocoding import Geocoding
 class TestGeocoding():
 
     @mock.patch("app.api.geocoding.requests")
-    def test_request(self, mock_current):
+    def test_request(self, mock_requests):
         ville = "paris"
         geo = Geocoding(ville)
         expected = {'results':
@@ -29,8 +29,8 @@ class TestGeocoding():
                 'place_id': 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ', 'types': ['locality', 'political']}],
             'status': 'OK'}
 
-        mock_current = MagicMock()
-        mock_current.return_value = expected
+        mock_requests = MagicMock()
+        mock_requests.return_value = expected
 
         result = geo.send_request()
 
