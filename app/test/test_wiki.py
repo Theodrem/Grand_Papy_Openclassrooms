@@ -1,30 +1,44 @@
-import pytest
-import urllib.request
+import unittest
+from unittest.mock import patch
+
 from app.api.wiki import Wiki
 
 
-class TestWiki:
+class TestWiki(unittest.TestCase):
     """
     Class test for the Wikipedia class.
     """
-    def test_request_page(self, monkeypatch):
-        wiki = Wiki(37.4835791, -122.1500939)
-        data_page = {'batchcomplete': '', 'query': {'geosearch': [{'pageid': 10142861, 'ns': 0, 'title': 'Facebook City', 'lat': 37.481027, 'lon': -122.153898, 'dist': 439.5, 'primary': ''}]}}
 
-        def mockreturn():
-            return data_page
+    def setUp(self):
+        self.lat = 37.4835791
+        self.lng = -122.1500939
 
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
-        assert wiki.get_page() == data_page["query"]["geosearch"][0]['pageid']
+        self.expected_page = 10142861
 
-    def test_request_description(self, monkeypatch):
-        wiki = Wiki(37.4835791, -122.1500939)
-        data_description = {'batchcomplete': '', 'query': {'pages': {'10142861': {'pageid': 10142861, 'ns': 0, 'title': 'Facebook City', 'extract': "Facebook City ou Zee-Town (Ville Facebook, ou Ville Z, comme Zuckerberg) est un important projet de création de ville nouvelle-campus urbanisé-cité idéale d'environ 80 hectares. Ce projet est lancé en 2012 par Mark Zuckerberg, PDG fondateur de la société américaine de réseautage social Facebook (entreprise), à Menlo Park, dans la baie de San Francisco, de la Silicon Valley, en Californie, aux États-Unis,."}}}}
+        self.expected_description = "Facebook City ou Zee-Town (Ville Facebook, ou Ville Z, comme Zuckerberg) est un " \
+                                    "important projet de création de ville nouvelle-campus urbanisé-cité idéale " \
+                                    "d'environ 80 hectares. Ce projet est lancé en 2012 par Mark Zuckerberg, " \
+                                    "PDG fondateur de la société américaine de réseautage social Facebook (" \
+                                    "entreprise), à Menlo Park, dans la baie de San Francisco, de la Silicon Valley, " \
+                                    "en Californie, aux États-Unis,. "
 
-        def mockreturn():
-            return data_description
+        self.wiki = Wiki(self.lat, self.lng)
 
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
-        assert wiki.get_description() == data_description["query"]["pages"]["10142861"]["extract"]
+
+    @patch.object(Wiki, "get_page")
+    def test_get_page(self, mock_request):
+        mock_request.return_value = self.expected_page
+        mock_request.get.return_value.status_code = 200
+
+        results = self.wiki.get_page()
+        self.assertEqual(results, self.expected_page)
+        mock_request.assert_called_once_with(self.lat, self.lng)
+
+    @patch.object(Wiki, "get_description")
+    def test_get_page(self, mock_request):
+        mock_request.return_value = self.expected_description
+        results = self.wiki.get_description()
+        self.assertEqual(results, self.expected_description)
+
 
 

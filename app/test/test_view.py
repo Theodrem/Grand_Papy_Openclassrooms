@@ -31,8 +31,9 @@ class TestView:
             "Ce projet est lancé en 2012 par Mark Zuckerberg, PDG fondateur de la société américaine de réseautage social Facebook (entreprise),"
             " à Menlo Park, dans la baie de San Francisco, de la Silicon Valley, en Californie, aux États-Unis,."
 
-            rv = c.post('/process', json={'input_user': parsed_input, 'lat': lat, 'lng': lng,  # Return all data with json format
+            rv = c.post('/process', json={'input_user': parsed_input, 'lat': lat, 'lng': lng,
                     'address': address, "message": message,
                     'end_mess': end_message, 'wiki': mess_wiki})
 
             assert rv.status_code == 200
+
