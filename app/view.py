@@ -34,7 +34,8 @@ def process():
     parsed_input = sentence.transform_input()  # This variable is final input
 
     try:
-        geo = Geocoding(parsed_input)  # Try to create a geocoding instance
+        geo = Geocoding(parsed_input)# Try to create a geocoding instance
+        geo.send_request()
         lng = geo.get_longitude()
         lat = geo.get_latitude()
         address = geo.get_address()
@@ -43,6 +44,7 @@ def process():
         wiki = Wiki(lat, lng)  # Try to create a wiki instance
 
         try:
+            wiki_page = wiki.get_page()
             mess_wiki = wiki.get_description()  # Try to get data from mediaWiki
             message = get_message()
             end_message = get_end_message()

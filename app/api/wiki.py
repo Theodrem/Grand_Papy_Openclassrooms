@@ -45,7 +45,7 @@ class Wiki:
         """
         :return: Place description of Mediawiki
         """
-        self.get_page()
+
         parameters = {
             "action": "query",
             "format": "json",

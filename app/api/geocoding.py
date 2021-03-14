@@ -19,7 +19,7 @@ class Geocoding:
         self.place = place
         self.current = None
         self.geo_mess = "no_found_geocoding"  # Error dictionary key
-        self.send_request()
+
 
     def send_request(self):
         """
