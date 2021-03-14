@@ -24,8 +24,6 @@ class TestParser(unittest.TestCase):
         """
         Check if the parsed input is good.
         """
-        with patch('app.parser.Parser') as mock_text:
-            parse_two = Parser("Salut papy donne moi l'adresse de la tour de pise")
-            mock_text.return_value = self.value_two
-            results = parse_two.transform_input()
-            self.assertEqual(parse_two.transform_input(), self.value_two)
+
+        parse_two = Parser("Salut papy donne moi l'adresse de la tour de pise")
+        self.assertEqual(parse_two.transform_input(), self.value_two)
