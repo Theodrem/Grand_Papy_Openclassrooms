@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch
+
 from app.api.wiki import Wiki
 
 

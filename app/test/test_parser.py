@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch
+
 from app.config import STOP_WORDS
 from app.parser import Parser
 

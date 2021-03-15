@@ -1,8 +1,9 @@
 import unittest
-from unittest.mock import patch
-from app.api.geocoding import Geocoding
 import mock
 import os
+from unittest.mock import patch
+
+from app.api.geocoding import Geocoding
 
 
 GEOCODING_DATA = {'results':
