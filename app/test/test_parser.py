@@ -17,7 +17,7 @@ class TestParser(unittest.TestCase):
         Parse the input
         Check if there are bad words in the parsed entry.
         """
-        parse = Parser("Dis moi l'adresse de facebook")
+        parse = Parser("Dis moi l'adresse de RMC")
         results = parse.transform_input()
         self.assertEqual(len([word for word in results.split(" ") if word not in STOP_WORDS]), 1)
 

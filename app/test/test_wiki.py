@@ -3,7 +3,6 @@ from unittest.mock import patch
 
 from app.api.wiki import Wiki
 
-
 WIKI_DATA_PAGE = {'batchcomplete': '', 'query': {'geosearch': [
     {'pageid': 10142861, 'ns': 0, 'title': 'Facebook City', 'lat': 37.481027, 'lon': -122.153898, 'dist': 439.5,
      'primary': ''}]}}
@@ -17,12 +16,14 @@ WIKI_DATA_DESC = {'batchcomplete': '', 'query': {'pages': {
                             "Francisco, de la Silicon Valley, en Californie, aux États-Unis,."}}}}
 
 
-class MockResponse:
-    def json_desription(self):
-        return WIKI_DATA_DESC
-
-    def json_page(self):
+class MockResponsePage:
+    def json(self):
         return WIKI_DATA_PAGE
+
+
+class MockResponseDesc:
+    def json(self):
+        return WIKI_DATA_DESC
 
 
 class TestWiki(unittest.TestCase):
@@ -45,7 +46,7 @@ class TestWiki(unittest.TestCase):
         }
         with patch('app.api.wiki.requests.get') as mock_requests:
             wiki = Wiki(self.lat, self.lng)
-            mock_requests.return_value = MockResponse.json_page
+            mock_requests.return_value = MockResponsePage()
             results = wiki.get_page()
             self.assertEqual(results, WIKI_DATA_PAGE["query"]["geosearch"][0]['pageid'])
             mock_requests.assert_called_once_with(self.url, params=params)
@@ -62,7 +63,7 @@ class TestWiki(unittest.TestCase):
         }
         with patch('app.api.wiki.requests.get') as mock_requests:
             wiki = Wiki(self.lat, self.lng)
-            mock_requests.return_value = MockResponse.json_desription
+            mock_requests.return_value = MockResponseDesc()
             wiki.page = WIKI_DATA_PAGE["query"]["geosearch"][0]['pageid']
             results = wiki.get_description()
             self.assertEqual(results, WIKI_DATA_DESC["query"]["pages"][str(wiki.page)]["extract"])
