@@ -25,6 +25,5 @@ class TestParser(unittest.TestCase):
         """
         Check if the parsed input is good.
         """
-
         parse_two = Parser("Salut papy donne moi l'adresse de la tour de pise")
         self.assertEqual(parse_two.transform_input(), self.value_two)

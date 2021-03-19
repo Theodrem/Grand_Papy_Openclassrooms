@@ -17,11 +17,17 @@ WIKI_DATA_DESC = {'batchcomplete': '', 'query': {'pages': {
 
 
 class MockResponsePage:
+    """
+    Return json expected pages
+    """
     def json(self):
         return WIKI_DATA_PAGE
 
 
 class MockResponseDesc:
+    """
+    Return json expected description
+    """
     def json(self):
         return WIKI_DATA_DESC
 

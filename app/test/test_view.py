@@ -64,16 +64,25 @@ WIKI_DATA_DESC = {'batchcomplete': '', 'query': {'pages': {
 
 
 class MockResponseGeo:
+    """
+    Return json expected geocoding.
+    """
     def json(self):
         return GEOCODING_DATA
 
 
 class MockResponsePage:
+    """
+    Return json expected page_id.
+    """
     def json(self):
         return WIKI_DATA_PAGE
 
 
 class MockResponseDescription:
+    """
+    Return json expected description.
+    """
     def json(self):
         return WIKI_DATA_DESC
 
@@ -108,11 +117,15 @@ class TestView(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
 
     def test_parser(self):
+        """
+        Test parser input
+        """
         p = Parser(self.input)
         results = p.transform_input()
         self.assertEqual(results, self.parsed_input)
 
     def test_geocoding_send_request(self):
+
         params = {
             "key": "Fake_key",
             "address": self.parsed_input
@@ -126,6 +139,9 @@ class TestView(unittest.TestCase):
             mock_requests.assert_called_once_with(self.url_geo, params=params)
 
     def test_wiki_get_page(self):
+        """
+        Test get_page with Wiki
+        """
         params = {
             "action": "query",
             "list": "geosearch",
@@ -141,6 +157,9 @@ class TestView(unittest.TestCase):
             mock_requests.assert_called_once_with(self.url_wiki, params=params)
 
     def test_get_description(self):
+        """
+        Test get_description with Wiki
+        """
         params = {
             "action": "query",
             "format": "json",
@@ -159,6 +178,9 @@ class TestView(unittest.TestCase):
             mock_requests.assert_called_once_with(self.url_wiki, params=params)
 
     def test_process(self):
+        """
+        Check if the process view with the post method is correct
+        """
         with app.test_client() as c:
             rv = c.post('/process', json={'input_user': self.parsed_input, 'lat': self.lat, 'lng': self.lng,
                                           'address': self.address, "message": self.message,

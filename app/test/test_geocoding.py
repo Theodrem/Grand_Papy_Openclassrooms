@@ -5,7 +5,9 @@ from unittest.mock import patch
 
 from app.api.geocoding import Geocoding
 
-
+"""
+Expected request result
+"""
 GEOCODING_DATA = {'results':
             [{'address_components': [
                 {'long_name': 'Paris', 'short_name': 'Paris', 'types': ['locality', 'political']},
@@ -27,11 +29,18 @@ GEOCODING_DATA = {'results':
 
 class MockResponse:
     def json(self):
+        """
+        Return json expected values
+        """
         return GEOCODING_DATA
 
 
-@mock.patch.dict(os.environ, {'GOOGLEKEY': "Fake_key"})
+
+@mock.patch.dict(os.environ, {'GOOGLEKEY': "Fake_key"}) #Patch google key
 class TestGeocoding(unittest.TestCase):
+    """
+    Class test for the Wikipedia class.
+    """
 
     def setUp(self):
         self.address = "paris"
@@ -43,6 +52,9 @@ class TestGeocoding(unittest.TestCase):
         }
 
     def test_send_request(self):
+        """
+        Patch request.get and we check if the send_request() function returns the expected result
+        """
         with patch('app.api.geocoding.requests.get') as mock_requests:
             geo = Geocoding(self.address)
             mock_requests.return_value = MockResponse()
@@ -51,18 +63,27 @@ class TestGeocoding(unittest.TestCase):
             mock_requests.assert_called_once_with(self.url, params=self.params)
 
     def test_get_latitude(self):
+        """
+        Check if the get_latitude() function returns the expected result
+        """
         geo = Geocoding(self.address)
         geo.current = GEOCODING_DATA
         results = geo.get_latitude()
         self.assertEqual(results, GEOCODING_DATA['results'][0]['geometry']['location']['lat'])
 
     def test_get_lng(self):
+        """
+        Check if the get_longitude() function returns the expected result
+        """
         geo = Geocoding(self.address)
         geo.current = GEOCODING_DATA
         results = geo.get_longitude()
         self.assertEqual(results, GEOCODING_DATA['results'][0]['geometry']['location']['lng'])
 
     def test_get_address(self):
+        """
+        Check if the get_address() function returns the expected result
+        """
         geo = Geocoding(self.address)
         geo.current = GEOCODING_DATA
         results = geo.get_address()
