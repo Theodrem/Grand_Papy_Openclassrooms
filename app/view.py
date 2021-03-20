@@ -64,7 +64,6 @@ def process():
         message = get_errors_response(
             "no_found_mess")  # Error message geocoding
         end_message = None
-
     return jsonify({'input_user': parsed_input, 'lat': lat, 'lng': lng,  # Return all data with json format
                     'address': address, "message": message,
                     'end_mess': end_message, 'wiki': mess_wiki})
