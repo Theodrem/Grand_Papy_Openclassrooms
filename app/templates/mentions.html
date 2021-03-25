@@ -9,12 +9,13 @@
 
 {% block content %}
 <body>
-    <div class="container">
+    <div class="container text_mentions">
         <div class="row">
             <div class="col text-center">
-              <h1>Mentions légales</h1>
+              <h1  class="text-success">Mentions légales</h1>
                 <h2>Coordonnées heroku: <a href="https://www.heroku.com/contact" class="text-dark" target="_blank"><u> Heroku</u></a></h2>
                 <h2>Image Grand-père: <a href="https://pixabay.com/fr/vectors/vieil-homme-barbe-personne-%C3%A2g%C3%A9e-309921/" class="text-dark" target="_blank"><u>Image</u></a></h2>
+                <p>Retour à la page d'accueil: <a href="{{ url_for('index') }}" class="text-success" target="_blank"><u>Accueil</u></a></p>
             </div>
         </div>
     </div>
