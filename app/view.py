@@ -69,6 +69,11 @@ def process():
                     'end_mess': end_message, 'wiki': mess_wiki})
 
 
+@app.route('/mentions')
+def mentions():
+    return render_template("mentions.html")
+
+
 @app.errorhandler(404)
 def resource_not_found(e):
     return render_template("404.html")
