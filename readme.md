@@ -23,4 +23,4 @@ The grandfather will answer you the address, the map and a story.
 ## Local installation:
 
 Install libraries cmd: "pip install riquirements.txt"
-Install Interpreter cmd: ".venv\Scripts\activate.bat activate"
+
